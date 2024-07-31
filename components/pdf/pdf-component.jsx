@@ -177,7 +177,7 @@ function App({ document }) {
         width={'80vw'}
         ref={containerRef}
         isReadOnly={false}
-        enableToolbar={true}
+        enableToolbar={false}
         serviceUrl="https://ej2services.syncfusion.com/production/web-services/api/documenteditor/"
       />
     </div>
