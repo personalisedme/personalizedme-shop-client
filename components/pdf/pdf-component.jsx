@@ -26,7 +26,22 @@ L10n.load({
 
 DocumentEditorContainerComponent.Inject(Toolbar);
 
-function App({ document }) {
+let book1toolbarOptions = ['Image'];
+let book2toolbarOptions = ['Image', 'Break'];
+function App({ document, toolbar }) {
+ 
+  if (
+    document ==
+    'https://cdn.shopify.com/s/files/1/0677/4741/4263/files/Clip_1_1_-_122_1_2_1.docx?v=1723275963'
+  ) {
+    toolbar = book1toolbarOptions;
+  } else {
+    toolbar = book2toolbarOptions;
+  }
+
+  console.log(toolbar<"fsdfd");
+  
+
   const containerRef = useRef(null);
   const [dragging, setDragging] = useState(false);
   const [currentImage, setCurrentImage] = useState(null);
@@ -161,23 +176,24 @@ function App({ document }) {
   };
 
   return (
-    <div onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}>
+    // onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}
+    <div>
       <div className="mb-2 flex gap-2">
-        {' '}
+        {/* {' '}
         <button className="border border-gray-100" onClick={handleImageReplacement}>
           Replace Image
         </button>
         <button className="border border-gray-100" onClick={handleSaveAsPDF}>
           Save as PDF
-        </button>
+        </button> */}
       </div>
       <DocumentEditorContainerComponent
         id="container"
         height={'100vh'}
-        width={'80vw'}
+        width={'40vw'}
         ref={containerRef}
-        isReadOnly={false}
-        enableToolbar={false}
+        enableToolbar={true}
+        toolbarItems={toolbar}
         serviceUrl="https://ej2services.syncfusion.com/production/web-services/api/documenteditor/"
       />
     </div>

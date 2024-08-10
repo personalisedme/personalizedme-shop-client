@@ -14,6 +14,7 @@ function Create({ handle }: { handle: string }) {
   const [options, setOptions] = useState<PDFTemplateType[]>([
     {
       title: '',
+      toolbar: '',
       item: '',
       thumbnail: ''
     }
@@ -21,9 +22,12 @@ function Create({ handle }: { handle: string }) {
 
   const [template, setTemplate] = useState<PDFTemplateType>({
     title: '',
+    toolbar: '',
+
     item: '',
     thumbnail: ''
   });
+  console.log(template);
 
   useEffect(() => {
     switch (handle) {
@@ -43,6 +47,8 @@ function Create({ handle }: { handle: string }) {
     } else {
       setTemplate({
         title: '',
+        toolbar: '',
+
         item: '',
         thumbnail: ''
       });
@@ -66,9 +72,9 @@ function Create({ handle }: { handle: string }) {
         </>
       ) : (
         <>
-          <h1>Customise Your Product</h1>
-          <div className="mx-auto w-full">
-            <PDFComponent document={template.item}></PDFComponent>
+          {/* <h1>Customise Your Product</h1> */}
+          <div className=" w-full">
+            <PDFComponent document={template.item} toolbar={template.toolbar}></PDFComponent>
           </div>
         </>
       )}
